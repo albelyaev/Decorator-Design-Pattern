@@ -12,7 +12,9 @@ namespace Decorator
 		{
 			Console.WriteLine( "***\r\n Begin program - no logging\r\n" );
 
-			IRepository<Customer> customerRepository = new Repository<Customer>();
+			//IRepository<Customer> customerRepository = new Repository<Customer>();
+
+			IRepository<Customer> customerRepository = new LoggerRepository<Customer>( new Repository<Customer>() );
 
 			var customer = new Customer
 			{
@@ -21,9 +23,9 @@ namespace Decorator
 				Address = "Address 1"
 			};
 
-			customerRepository.Add(customer);
-			customerRepository.Update(customer);
-			customerRepository.Delete(customer);
+			customerRepository.Add( customer );
+			customerRepository.Update( customer );
+			customerRepository.Delete( customer );
 
 			Console.WriteLine( "\r\nEnd program - no logging\r\n***" );
 			Console.ReadKey();
